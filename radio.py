@@ -72,9 +72,8 @@ def changeStation(unboundvalue, boundvalue):
   OLED_display(stationList[boundvalue - 1],"IP: " + IP)
   if boundvalue != currentStation:
     print("changing to station to ", stationList[boundvalue - 1])
-    os.system("mpc play " + str(boundvalue))
+    os.system("mpc play " + str(boundvalue) + " &")
     currentStation = boundvalue
-    print("been here")
   time.sleep(0.1)
 
 def OLED_display(text1, text2):
@@ -90,6 +89,7 @@ def OLED_display(text1, text2):
 # initialisation
 blink(5)
 led.value = True
+last_button_up = time.monotonic()
 
 onoff = 1
 cmd = "hostname -I | cut -d' ' -f1"
@@ -108,6 +108,9 @@ while True:
 
   toggle = button.value
 
+  if toggle:
+    last_button_up = time.monotonic()
+
   if (not toggle): # button was pressed
     blink(2)
     if onoff: # it was on, turn off
@@ -118,6 +121,8 @@ while True:
       onoff = 0
     elif not onoff: # it was off, turn on
       print("TURN ON")
+      cmd = "hostname -I | cut -d' ' -f1"
+      IP = subprocess.check_output(cmd, shell=True).decode("utf-8")
       OLED_display("WELCOME!","IP: " + IP)
       led.value = True
       os.system("mpc play 2")
@@ -127,12 +132,14 @@ while True:
       onoff = 1
 
   
-  if time.monotonic() > last_OLED_update + 5:
+  if time.monotonic() > last_OLED_update + 3:
     draw.rectangle((0, 0, width, height), outline=0, fill=0) #clear
     disp.image(image)
     disp.show()
 
-#  print("getvalue: ",e1.getValue())
-  time.sleep(0.05)
+  if (not toggle) and (time.monotonic() > last_button_up + 4): # button is pressed (ie ground/0) and has not been up for more than 4 seconds
+    os.system("sudo reboot")
+
+  time.sleep(0.01)
 
 

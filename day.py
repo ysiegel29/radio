@@ -3,7 +3,7 @@ import requests
 import digit
 
 result =  requests.get('https://script.google.com/macros/s/AKfycbwIFBdvKE5f7604Eb-s32QVg6BiPbpU29vIzKefhJGQZ0PSaroXkNvD/exec')
-print(result.text)
+# print(result.text)
 digit.display_init()
 
 if result.text == 'OFF':
