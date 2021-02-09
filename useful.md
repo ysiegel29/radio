@@ -3,31 +3,31 @@ pinouts.xyz
 
 
 ## PROCESSES
-jobs
-kill
-list all runnign process ps aux
-kill PID
+`jobs`
+`kill`
+`ps aux` list all running processes
+`kill PID`
 
-sudo reboot
-sudo shutdown
-sudo shutodown -0 ?
+`sudo reboot`
+`sudo shutdown`
+`sudo shutodown -0` ?
 
-raspi-config
+`raspi-config`
 omxplayer to play sound
-add & at the end to play in background
+add `&` at the end to play in background
 
-pinouts
+`pinouts`
 
 ## STARTUP
-sudo nano /etc/rc.local for boot launch but crontab is better
-crontab -e
+`sudo nano /etc/rc.local` for boot launch but crontab is better
+`crontab -e`
 https://www.raspberrypi.org/documentation/linux/usage/cron.md
-crontab -l
+`crontab -l`
 
-date
+`date`
 
 # GIT
-git help
-git status
-git commit -a #commit all
-git push
+`git help`
+`git status`
+`git commit -a #commit all`
+`git push`
