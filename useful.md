@@ -1,6 +1,6 @@
 https://www.raspberrypi.org/documentation/usage/audio/
 
-* processes
+# processes\
 jobs
 kill
 list all runnign process ps aux
@@ -17,7 +17,7 @@ add & at the end to play in background
 
 pinouts
 
-* STARTUP
+# STARTUP\
 sudo nano /etc/rc.local for boot launch but crontab is better
 crontab -e
 https://www.raspberrypi.org/documentation/linux/usage/cron.md
@@ -25,7 +25,7 @@ crontab -l
 
 date
 
-* git
+# git\
 git help
 git status
 git commit -a #commit all
